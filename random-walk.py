@@ -9,8 +9,8 @@ x_pos = numpy.zeros((n_particle, n_iter))
 y_pos = numpy.zeros((n_particle, n_iter))
 
 # Iteration
-for j in range(n_particle):
-  for i in range(1, n_iter):
+for i in range(1, n_iter):
+  for j in range(n_particle):
     rand = random.uniform(0, 1)
     if rand <= 0.25:
       x_pos[j][i] = x_pos[j][i - 1] + 1
@@ -25,8 +25,10 @@ for j in range(n_particle):
       x_pos[j][i] = x_pos[j][i - 1]
       y_pos[j][i] = y_pos[j][i - 1] + 1
 
-  pylab.plot(x_pos[j], y_pos[j])
-
-# Plotting
+#Plotting 
+for j in range(n_particle):
+  for i in range(1, n_iter):
+    pylab.plot(x_pos[j], y_pos[j])
+    
 pylab.title("Random Walk 2D (" + str(n_iter) + " steps and " + str(n_particle) + " Partikel)")
 pylab.show()
